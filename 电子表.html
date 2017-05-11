@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			width: 200px;
+			height: 200px;
+			background:pink;
+			font-size: 50px;
+			float: left;
+			text-align: center;
+			}
+		p{
+			background: #000;
+			font-size: 30px;
+			width: 100px;
+			height: 100px;
+			margin: 0 auto;
+			color: #fff;
+			line-height: 100px;
+		}
+		button{
+			margin-right: 50px ;
+
+		}
+	</style>
+</head>
+<body>
+	<div>时
+		<p></p>
+	</div>
+	<div>分
+		<p></p>
+	</div>
+	<div>秒
+		<p></p>
+	</div>
+	<button class="stop">停止</button>
+	<button class="go">开始</button>
+	<script src="jquery-3.1.1.js"></script>
+	<script>
+		var time = function(){
+				var date = new Date();
+				var hours=date.getHours();
+				var minutes=date.getMinutes();
+				var seconds=date.getSeconds();
+				$("div").eq(0).children().text(hours)
+				$("div").eq(1).children().text(minutes)
+				$("div").eq(2).children().text(seconds)
+				if(hours<10){$("div").eq(0).children().text("0"+hours)}
+				if(minutes<10){$("div").eq(1).children().text("0"+minutes)}
+				if(seconds<10){$("div").eq(2).children().text("0"+seconds)}
+
+			}
+		time();
+		var t =setInterval(time,1000) //t拿到的是这个变化的一个返回值 setInterval先发生这个动作，然后得到一个返回值可以赋给变量
+		$(".stop").click(function(){
+			clearInterval(t) //clearInterval 中停止的是当前返回的一个变量
+		})
+		$(".go").click(function(){
+			t = setInterval(time,1000)
+		})
+
+	</script>
+</body>
+</html>

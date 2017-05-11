@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>时钟</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		div{
+			width: 528px;
+			height: 528px;
+			margin: 0 auto;
+			overflow: hidden;
+			position: relative;
+
+		}
+		img{
+			display: block;
+		}
+		.hour,.minute,.second{
+			width: 10px;
+			position: absolute;
+			top:0;
+			left:259px;
+			border-radius: 5px;
+			transform-origin:50% 100%;
+		}
+		.hour{
+			top:164px;
+			height: 100px;
+			background: #000;
+			z-index: 5;
+		}
+		.minute{
+			top: 114px;
+			height: 150px;
+			background: teal;
+			z-index: 4;
+		}
+		.second{
+			top:64px;
+			height: 200px;
+			background: hotpink;
+			z-index: 3;
+		}
+		.circle{
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			background: red;
+			position: absolute;
+			top:254px;
+			left:254px;
+			z-index: 8;
+		}
+	</style>
+</head>
+<body>
+	<div class="clock">
+		<img src="clock.png" alt="">
+		<div class="hour"></div>
+		<div class="minute"></div>
+		<div class="second"></div>
+		<div class="circle"></div>
+	</div>
+	<script src="jquery-3.1.1.js"></script>
+	<script>
+		var time = function(){
+			var date = new Date;
+			var hour = date.getHours()
+			var minute = date.getMinutes()
+			var second = date.getSeconds()
+			var mdeg=minute*360/12/5;
+			var sdeg=second*360/12/5;
+			var hdeg=hour*360/12 + minute*30/60;
+			$(".second").css("transform","rotate("+sdeg+"deg)")					
+			$(".minute").css("transform","rotate("+mdeg+"deg)")
+			$(".hour").css("transform","rotate("+hdeg+"deg)")
+		}
+		time()
+		setInterval(time,1000)
+	</script>
+</body>
+</html>

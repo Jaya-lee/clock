@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		
+		p{
+			background:#000;
+			font-size: 50px;
+			width: 300px;
+			height: 100px;
+			margin: 0 auto;
+			color: red;
+			line-height: 100px;
+			text-align: center;
+		}
+		
+	</style>
+</head>
+<body>
+	<p></p>
+	<script src="jquery-3.1.1.js"></script>
+	<script>
+		
+		var h = 18;
+		var m = 52;
+		var s = 0;
+		var time = function(){
+			var date = new Date;
+			var nowh = date.getHours()
+			var nowm = date.getMinutes()
+			var nows = date.getSeconds()
+			var alls = s+m*60+h*3600-nows-nowm*60-nowh*3600;
+			var showh = Math.floor(alls/3600);
+			var showm = Math.floor(alls%3600/60);
+			var shows = Math.floor(alls%3600%60);
+				if(showh <10){
+				showh = "0" + showh;
+				}
+				if(showm <10){
+				showm = "0" + showm;
+				}
+				if(shows <10){
+				shows = "0" + shows;
+				}
+			$("p").text(showh+":"+showm+":"+shows)
+			if (alls<=0){
+				clearInterval(t);
+				$("p").text("活动结束!")
+			}
+		}
+		time();
+		var t =setInterval(time,1000);
+
+	</script>
+</body>
+</html>
